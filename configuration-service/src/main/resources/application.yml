@@ -1,0 +1,38 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: configuration-service
+    instance-id: ${spring.application.name}:${random.uuid}:${server.port}
+
+  profiles:
+    active: native
+  cloud:
+    config:
+      server:
+        native:
+          searchLocations: classpath:/config
+#        git:
+#          uri: https://github.com/sexypudge/git-localconfig-repo.git
+#          skip-ssl-validation: true
+#          basedir: D:/Dev4vn/CVManagement/cv-management/cv-git-local-repo
+#          default-label: master
+
+        #spring.cloud.config.server.git.uri=https://github.com/sexypudge/git-localconfig-repo.git
+      enabled: true
+#    config:
+#      server:
+#        git:
+#          uri: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+#          default-label: main
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+    instance-id: ${spring.application.instance-id}
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 10
