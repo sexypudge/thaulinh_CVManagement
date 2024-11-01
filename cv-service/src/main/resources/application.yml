@@ -1,0 +1,35 @@
+spring:
+  profiles:
+    #    Used to specify the active profile(s) for the local Spring Boot application.
+    #    this will activate the corresponding spring.cloud.config.profile value
+    active: prod
+  application:
+    name: cv-service
+  config:
+    import: "optional:configserver:http://localhost:8888"
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  cloud:
+    config:
+      enabled: false
+      name: ${spring.application.name}, application
+      # pull list of .yml and apply properties file based on spring.profiles.active
+      profile: prod
+      fail-fast: true
+#      uri: http://localhost:8888
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  cloud:
+    config:
+      enabled: false
+      name: ${spring.application.name}, application
+      # pull list of .yml and apply properties file based on spring.profiles.active
+      profile: dev
+      fail-fast: true
+#      uri: http://localhost:8888

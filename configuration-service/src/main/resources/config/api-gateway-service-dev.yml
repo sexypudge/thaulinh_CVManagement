@@ -1,0 +1,26 @@
+server:
+  port: 8080
+
+spring:
+  config:
+    activate:
+      on-profile: dev
+  main:
+    web-application-type: reactive
+    allow-bean-definition-overriding: true
+  application:
+    name: api-gateway-service-${spring.config.activate.on-profile}
+
+  cloud:
+    gateway:
+      routes:
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/api/users/**
+        - id: cv-service
+          uri: lb://cv-service
+          predicates:
+            - Path=/api/cvs/**
+#        - id: account-service
+#          uri: lb://account-service

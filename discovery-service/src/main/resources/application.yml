@@ -1,0 +1,24 @@
+server:
+  port: 8761
+
+spring:
+  application:
+    name: discovery-service
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+  instance:
+    hostname: localhost
+    lease-expiration-duration-in-seconds: 15
+    lease-renewal-interval-in-seconds: 5
+
+logging:
+  level:
+    com.netflix.eureka: info
+    com.netflix.discovery: info
+management:
+  tracing:
+    sampling:
+      probability: 1.0

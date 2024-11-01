@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.3.5</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <groupId>com.thaulinh</groupId>
+    <artifactId>cv-management</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>cv-management</name>
+    <description>cv-management</description>
+    <packaging>pom</packaging>
+
+    <modules>
+        <!--        <module>user-service</module>-->
+        <module>core-service</module>
+        <module>cv-service</module>
+        <!--        <module>job-service</module>-->
+        <!--        <module>skill-service</module>-->
+                <module>discovery-service</module>
+                <module>api-gateway-service</module>
+                <module>configuration-service</module>
+        <!--        Application Service: Quản lý quá trình ứng tuyển.-->
+        <!--        Notification Service: Quản lý việc gửi thông báo.-->
+        <!--        Search Service: Dành riêng cho việc tìm kiếm CV.-->
+        <!--        Analytics Service: Phân tích dữ liệu về ứng viên và việc làm.-->
+    </modules>
+
+    <properties>
+        <global.version>0.0.1-SNAPSHOT</global.version>
+        <java.version>17</java.version>
+        <springboot.version>3.3.5</springboot.version>
+        <springdoc.version>2.6.0</springdoc.version>
+    </properties>
+
+    <!--  will alway transitive to child module-->
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-cache</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.ben-manes.caffeine</groupId>
+            <artifactId>caffeine</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <!--  to control versions of child modules-->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-starter-webflux-ui</artifactId>
+                <version>${springdoc.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+</project>
